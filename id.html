@@ -1,7 +1,38 @@
-<div id="slide-number">1</div>
-   <script>
-      let slideIndex = 1;
-      function updateSlideNumber() {
-         document.getElementById('slide-number').innerText = slideIndex;
-      }
-   </script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número de Diapositiva</title>
+    <style>
+        /* Estilo básico */
+        #slide-footer {
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="slide-footer">
+      <span id="current-slide">1</span>
+    </div>
+    <script>
+        // Captura el número de diapositiva del DOM de Genially
+        function getCurrentSlide() {
+            const slideElement = document.querySelector('[data-cy="orderSelectedSlideIcon"]');
+            if (slideElement) {
+                return slideElement.innerText; // Obtén el número actual
+            }
+            return 'N/A'; // En caso de error
+        }
+        // Actualiza el número cada medio segundo
+        setInterval(() => {
+            const slideNumber = getCurrentSlide();
+            document.getElementById('current-slide').innerText = slideNumber;
+        }, 500);
+    </script>
+</body>
+</html>
